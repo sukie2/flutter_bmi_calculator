@@ -17,6 +17,7 @@ class _FirstPageState extends State<FirstPage> {
   Gender selectedCard;
   double height = 160;
   double weight = 60;
+  double age = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +152,46 @@ class _FirstPageState extends State<FirstPage> {
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(),
+                  child: ReusableCard(
+                    color: inActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: labelStyle,
+                        ),
+                        Text(
+                          age.round().toString(),
+                          style: kNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onTap: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 15.0,
+                            ),
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onTap: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
