@@ -1,8 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'constants.dart';
 import 'reusable_card.dart';
 import 'reusable_icon.dart';
 
@@ -14,12 +13,8 @@ class FirstPage extends StatefulWidget {
 enum Gender { male, female }
 
 class _FirstPageState extends State<FirstPage> {
-  static const bottomContainerHeight = 80.0;
-  static const bottomContainerColor = Color(0xFFEB1555);
-  static const activeCardColor = Color(0xFF1D1E33);
-  static const inActiveCardColor = Color(0xFF111328);
-
   Gender selectedCard;
+  double _currentSliderValue = 160;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +23,7 @@ class _FirstPageState extends State<FirstPage> {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -42,7 +38,7 @@ class _FirstPageState extends State<FirstPage> {
                     color: selectedCard == Gender.male
                         ? activeCardColor
                         : inActiveCardColor,
-                    child: ReusableIcon(
+                    cardChild: ReusableIcon(
                       iconName: FontAwesomeIcons.mars,
                       iconText: 'MALE',
                     ),
@@ -58,7 +54,7 @@ class _FirstPageState extends State<FirstPage> {
                     color: selectedCard == Gender.female
                         ? activeCardColor
                         : inActiveCardColor,
-                    child: ReusableIcon(
+                    cardChild: ReusableIcon(
                       iconName: FontAwesomeIcons.venus,
                       iconText: 'FEMALE',
                     ),
@@ -68,7 +64,44 @@ class _FirstPageState extends State<FirstPage> {
             ),
           ),
           Expanded(
-            child: ReusableCard(),
+            child: ReusableCard(
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'HEIGHT',
+                    style: labelStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        _currentSliderValue.round().toString(),
+                        style: kNumberStyle,
+                      ),
+                      Text(
+                        'cm',
+                        style: labelStyle,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                    value: _currentSliderValue,
+                    activeColor: accentColor,
+                    min: 120,
+                    max: 220,
+                    onChanged: (double value) {
+                      setState(() {
+                        _currentSliderValue = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              color: inActiveCardColor,
+            ),
           ),
           Expanded(
             child: Row(
@@ -83,7 +116,7 @@ class _FirstPageState extends State<FirstPage> {
             ),
           ),
           Container(
-            color: bottomContainerColor,
+            color: accentColor,
             height: bottomContainerHeight,
             width: double.infinity,
             margin: EdgeInsets.only(top: 10.0),
