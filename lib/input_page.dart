@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
 import 'reusable_card.dart';
 import 'reusable_icon.dart';
+import 'rounded_icon_button.dart';
 
 class FirstPage extends StatefulWidget {
   @override
@@ -14,7 +15,8 @@ enum Gender { male, female }
 
 class _FirstPageState extends State<FirstPage> {
   Gender selectedCard;
-  double _currentSliderValue = 160;
+  double height = 160;
+  double weight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +80,7 @@ class _FirstPageState extends State<FirstPage> {
                     textBaseline: TextBaseline.alphabetic,
                     children: [
                       Text(
-                        _currentSliderValue.round().toString(),
+                        height.round().toString(),
                         style: kNumberStyle,
                       ),
                       Text(
@@ -88,13 +90,13 @@ class _FirstPageState extends State<FirstPage> {
                     ],
                   ),
                   Slider(
-                    value: _currentSliderValue,
+                    value: height,
                     activeColor: accentColor,
                     min: 120,
                     max: 220,
                     onChanged: (double value) {
                       setState(() {
-                        _currentSliderValue = value;
+                        height = value;
                       });
                     },
                   ),
@@ -107,7 +109,46 @@ class _FirstPageState extends State<FirstPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(),
+                  child: ReusableCard(
+                    color: inActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: labelStyle,
+                        ),
+                        Text(
+                          weight.round().toString(),
+                          style: kNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onTap: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 15.0,
+                            ),
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onTap: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
                   child: ReusableCard(),
