@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bmi_calculator/results_page.dart';
+import 'package:flutter_bmi_calculator/bmi_engine.dart';
+import 'package:flutter_bmi_calculator/screens/results_page.dart';
+import 'package:flutter_bmi_calculator/widgets/primary_button.dart';
+import 'package:flutter_bmi_calculator/widgets/reusable_card.dart';
+import 'package:flutter_bmi_calculator/widgets/reusable_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'constants.dart';
-import 'reusable_card.dart';
-import 'reusable_icon.dart';
-import 'rounded_icon_button.dart';
+import '../constants.dart';
+import '../widgets/rounded_icon_button.dart';
 
 class FirstPage extends StatefulWidget {
   @override
@@ -197,24 +199,19 @@ class _FirstPageState extends State<FirstPage> {
               ],
             ),
           ),
-          GestureDetector(
+          PrimaryButton(
+            buttonText: 'CALCULATE',
             onTap: () {
+              BMIEngine engine = BMIEngine(weight: weight, height: height);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ResultsPage()),
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(
+                    result: engine.calculateBMI(),
+                  ),
+                ),
               );
             },
-            child: Container(
-              alignment: Alignment.center,
-              child: Text(
-                'CALCULATE',
-                style: kButtonTextStyle,
-              ),
-              color: accentColor,
-              height: bottomContainerHeight,
-              width: double.infinity,
-              margin: EdgeInsets.only(top: 10.0),
-            ),
           ),
         ],
       ),

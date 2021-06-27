@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_bmi_calculator/reusable_card.dart';
+import 'package:flutter_bmi_calculator/bmi_result.dart';
+import 'package:flutter_bmi_calculator/widgets/primary_button.dart';
+import 'package:flutter_bmi_calculator/widgets/reusable_card.dart';
 
-import 'constants.dart';
+import '../constants.dart';
 
 class ResultsPage extends StatelessWidget {
-  String resultStr = 'OVERWEIGHT';
-  String bmiResultStr = '26.7';
-  String adviceString =
-      'You have more than normal body weight, try to exercise more.';
+  final BMIResult result;
+
+  ResultsPage({@required this.result});
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +34,17 @@ class ResultsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    resultStr,
+                    result.level,
                     style: kResultStyle,
                   ),
                   Text(
-                    bmiResultStr,
+                    result.calculation,
                     style: kResultBMIStyle,
                   ),
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      adviceString,
+                      result.advice,
                       style: adviceTextStyle,
                       textAlign: TextAlign.center,
                     ),
@@ -52,15 +53,12 @@ class ResultsPage extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            height: 60.0,
-            color: accentColor,
-            alignment: Alignment.center,
-            child: Text(
-              'RE-CALCULATE',
-              style: kButtonTextStyle,
-            ),
-          )
+          PrimaryButton(
+            buttonText: 'RE-CALCULATE',
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
         ],
       ),
     );
