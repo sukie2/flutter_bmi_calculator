@@ -1,3 +1,3 @@
 # flutter_bmi_calculator
 
-![alt text](https://github.com/sukie2/flutter_bmi_calculator/blob/master/screen_recording/recording.gif "Screen grab")
+<img src="/screen_recording/recording.gif" width="240" height="480"/>
