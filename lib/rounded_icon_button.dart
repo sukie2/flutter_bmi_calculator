@@ -18,7 +18,7 @@ class RoundedIconButton extends StatelessWidget {
         height: 56.0,
       ),
       shape: CircleBorder(),
-      fillColor: activeCardColor,
+      fillColor: kActiveCardColor,
     );
   }
 }

@@ -40,7 +40,7 @@ class _FirstPageState extends State<FirstPage> {
                       });
                     },
                     color: selectedCard == Gender.male
-                        ? activeCardColor
+                        ? kActiveCardColor
                         : inActiveCardColor,
                     cardChild: ReusableIcon(
                       iconName: FontAwesomeIcons.mars,
@@ -56,7 +56,7 @@ class _FirstPageState extends State<FirstPage> {
                       });
                     },
                     color: selectedCard == Gender.female
-                        ? activeCardColor
+                        ? kActiveCardColor
                         : inActiveCardColor,
                     cardChild: ReusableIcon(
                       iconName: FontAwesomeIcons.venus,
@@ -208,10 +208,7 @@ class _FirstPageState extends State<FirstPage> {
               alignment: Alignment.center,
               child: Text(
                 'CALCULATE',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
+                style: kButtonTextStyle,
               ),
               color: accentColor,
               height: bottomContainerHeight,
