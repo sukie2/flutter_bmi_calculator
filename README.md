@@ -1,6 +1,7 @@
-# flutter_bmi_calculator
+# BMI Calculator written on Flutter
 
-Starting point flutter developemnt. This is a demostration of how to,
+##This is a starting point and a good example for somebody to follow who's new to Flutter developemnt.
+*It is is a demostration of how to,*
 
 1. Creating custom widgets.
 2. Navigating to new screens.
